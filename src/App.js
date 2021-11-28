@@ -26,42 +26,35 @@ function App() {
   }, [dispatch]);
 
   return (
-    !isFetchingCurrentUser && (
-      <>
-        <MyAppBar />
+    <>
+      <MyAppBar />
 
-        <Container style={{ maxWidth: "1650px", paddingBottom: "40px" }}>
-          <Switch>
-            <Suspense fallback={<p>Загружаем...</p>}>
-              <PublicRoute exact path="/">
-                <HomePage />
-              </PublicRoute>
+      <Container style={{ maxWidth: "1650px", paddingBottom: "40px" }}>
+        <Switch>
+          <Suspense fallback={<p>Загружаем...</p>}>
+            <PublicRoute exact path="/">
+              <HomePage />
+            </PublicRoute>
 
-              <PublicRoute exact path="/register" restricted>
-                <RegisterPage />
-              </PublicRoute>
+            <PublicRoute exact path="/register" restricted>
+              <RegisterPage />
+            </PublicRoute>
 
-              <PublicRoute
-                exact
-                path="/login"
-                restricted
-                redirectTo="/contacts"
-              >
-                <LoginPage />
-              </PublicRoute>
+            <PublicRoute exact path="/login" restricted redirectTo="/contacts">
+              <LoginPage />
+            </PublicRoute>
 
-              <PrivateRoute path="/contacts" redirectTo="/login">
-                <ContactsPage />
-              </PrivateRoute>
+            <PrivateRoute path="/contacts" redirectTo="/login">
+              <ContactsPage />
+            </PrivateRoute>
 
-              {/*<Route>
+            {/*<Route>
               <NotFoundPage />
             </Route>*/}
-            </Suspense>
-          </Switch>
-        </Container>
-      </>
-    )
+          </Suspense>
+        </Switch>
+      </Container>
+    </>
   );
 }
 
