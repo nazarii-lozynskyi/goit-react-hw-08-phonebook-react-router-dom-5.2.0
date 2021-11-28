@@ -44,15 +44,24 @@ function Form({ contacts }) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (contacts) {
-      if (contacts.some((contact) => contact.name.includes(name))) {
-        toast.error(`${name} is already in contacts`);
+    if (contacts.some((contact) => contact.name.includes(name))) {
+      toast.error(`${name} is already in contacts`);
 
-        reset();
+      reset();
 
-        setOpen(false);
-        return;
-      }
+      setOpen(false);
+
+      return;
+    }
+
+    if (contacts.some((contact) => contact.name.includes(name))) {
+      toast.error(`${name} is already in contacts`);
+
+      reset();
+
+      setOpen(false);
+
+      return;
     }
 
     const contact = {
@@ -73,7 +82,7 @@ function Form({ contacts }) {
   // --- Snackbar  /
   const [open, setOpen] = React.useState(false);
 
-  const handleClick = () => {
+  const HandleClick = () => {
     setOpen(true);
   };
 
@@ -140,7 +149,7 @@ function Form({ contacts }) {
         </Tooltip>
         <Tooltip title="Add contact" placement="left">
           <Button
-            onClick={handleClick}
+            onClick={HandleClick}
             variant="contained"
             type="submit"
             startIcon={<AddIcCall />}
