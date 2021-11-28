@@ -1,7 +1,6 @@
 import { Route, Switch } from "react-router-dom";
-
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, Suspense, lazy } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Container } from "@mui/material";
 
@@ -12,6 +11,9 @@ import ContactsPage from "./pages/ContactsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 import MyAppBar from "./components/MyAppBar";
+
+import PrivateRoute from "./components/PrivateRoute";
+import PublicRoute from "./components/PublicRoute";
 
 import { authOperations } from "./redux/auth";
 
@@ -28,17 +30,27 @@ function App() {
 
       <Container style={{ maxWidth: "1650px", paddingBottom: "40px" }}>
         <Switch>
-          <Route exact path="/" component={HomePage} />
+          <Suspense fallback={<p>Загружаем...</p>}>
+            <PublicRoute exact path="/">
+              <HomePage />
+            </PublicRoute>
 
-          <Route path="/register" component={RegisterPage} />
+            <PublicRoute exact path="register" restricted>
+              <RegisterPage />
+            </PublicRoute>
 
-          <Route path="/login" component={LoginPage} />
+            <PublicRoute exact path="/login" restricted redirectTo="/contacts">
+              <LoginPage />
+            </PublicRoute>
 
-          <Route path="/contacts" component={ContactsPage} />
+            <PrivateRoute path="/contacts" redirectTo="/login">
+              <ContactsPage />
+            </PrivateRoute>
 
-          <Route>
-            <NotFoundPage />
-          </Route>
+            {/*<Route>
+              <NotFoundPage />
+            </Route>*/}
+          </Suspense>
         </Switch>
       </Container>
     </>
