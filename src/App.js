@@ -35,7 +35,7 @@ function App() {
               <HomePage />
             </PublicRoute>
 
-            <PublicRoute exact path="register" restricted>
+            <PublicRoute exact path="/register" restricted>
               <RegisterPage />
             </PublicRoute>
 
