@@ -1,67 +1,62 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 
-import { authOperations } from '../../redux/auth';
+import { authOperations } from "../../redux/auth";
 
-import { Box, TextField, Button, FormControl } from '@mui/material';
+import { Box, TextField, Button, FormControl } from "@mui/material";
 
 function RegisterPage() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const dispatch = useDispatch();
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
-      case 'name':
+      case "name":
         return setName(value);
-      case 'email':
+      case "email":
         return setEmail(value);
-      case 'password':
+      case "password":
         return setPassword(value);
       default:
         return;
     }
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (name === '' || email === '' || password === '') {
-      console.log('alert');
+    if (name === "" || email === "" || password === "") {
+      console.log("alert");
       return;
     }
 
-    // console.log('submit');
     dispatch(authOperations.register({ name, email, password }));
 
-    setName('');
-    setEmail('');
-    setPassword('');
-  };
-
-  const onClick = e => {
-    //console.log('dffgfg');
+    setName("");
+    setEmail("");
+    setPassword("");
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <Box
         sx={{
-          display: 'flex',
-          alignItems: 'center',
-          flexDirection: 'column',
-          width: 'fit-content',
-          margin: '0 auto',
-          padding: '20px',
-          marginTop: '40px',
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
+          width: "fit-content",
+          margin: "0 auto",
+          padding: "20px",
+          marginTop: "40px",
           border: 1,
-          borderColor: 'primary.main',
+          borderColor: "primary.main",
           borderRadius: 2,
           boxShadow: 4,
         }}
       >
-        <FormControl sx={{ m: 1, width: '30ch' }} variant="outlined">
+        <FormControl sx={{ m: 1, width: "30ch" }} variant="outlined">
           <TextField
             id="input-Name"
             label="Name"
@@ -74,7 +69,7 @@ function RegisterPage() {
           />
         </FormControl>
 
-        <FormControl sx={{ m: 1, width: '30ch' }} variant="outlined">
+        <FormControl sx={{ m: 1, width: "30ch" }} variant="outlined">
           <TextField
             onChange={handleChange}
             required
@@ -85,7 +80,7 @@ function RegisterPage() {
           />
         </FormControl>
 
-        <FormControl sx={{ m: 1, width: '30ch' }} variant="outlined">
+        <FormControl sx={{ m: 1, width: "30ch" }} variant="outlined">
           <TextField
             onChange={handleChange}
             required
@@ -96,8 +91,8 @@ function RegisterPage() {
           />
         </FormControl>
 
-        <FormControl sx={{ m: 1, width: '30ch' }} variant="outlined">
-          <Button onClick={onClick} type="submit" variant="outlined">
+        <FormControl sx={{ m: 1, width: "30ch" }} variant="outlined">
+          <Button type="submit" variant="outlined">
             Registration
           </Button>
         </FormControl>
