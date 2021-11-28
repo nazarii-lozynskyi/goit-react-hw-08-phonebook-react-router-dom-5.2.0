@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 import {
   addNewContactRequest,
   addNewContactSuccess,
@@ -9,14 +9,14 @@ import {
   fetchContactsRequest,
   fetchContactsSuccess,
   fetchContactsError,
-} from './phonebook-actions';
+} from "./phonebook-actions";
 
-// GET @ /tasks
-const fetchContacts = () => async dispatch => {
+// GET @ /contacts
+const fetchContacts = () => async (dispatch) => {
   dispatch(fetchContactsRequest());
 
   try {
-    const { data } = await axios.get('/contacts');
+    const { data } = await axios.get("/contacts");
 
     dispatch(fetchContactsSuccess(data));
   } catch (error) {
@@ -24,8 +24,8 @@ const fetchContacts = () => async dispatch => {
   }
 };
 
-// POST @ /tasks
-const addNewContact = description => dispatch => {
+// POST @ /contacts
+const addNewContact = (description) => (dispatch) => {
   // const contact = {
   //   description,
   //   completed: false,
@@ -34,19 +34,19 @@ const addNewContact = description => dispatch => {
   dispatch(addNewContactRequest());
 
   axios
-    .post('/contacts', description)
+    .post("/contacts", description)
     .then(({ data }) => dispatch(addNewContactSuccess(data)))
-    .catch(error => dispatch(addNewContactError(error.message)));
+    .catch((error) => dispatch(addNewContactError(error.message)));
 };
 
-// DELETE @ /tasks/:id
-const deleteContact = contactId => dispatch => {
+// DELETE @ /contacts/:id
+const deleteContact = (contactId) => (dispatch) => {
   dispatch(deleteContactRequest());
 
   axios
     .delete(`/contacts/${contactId}`)
     .then(() => dispatch(deleteContactSuccess(contactId)))
-    .catch(error => dispatch(deleteContactError(error.message)));
+    .catch((error) => dispatch(deleteContactError(error.message)));
 };
 
 const contactsOperations = {
