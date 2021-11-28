@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 export default function Header() {
-  return <p>Phone Book</p>;
+  return <p style={{ marginLeft: "10px" }}>Phone Book</p>;
 }
