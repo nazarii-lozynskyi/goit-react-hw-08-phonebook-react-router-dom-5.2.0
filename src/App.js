@@ -1,5 +1,8 @@
 import { Route, Switch } from "react-router-dom";
 
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+
 import { Container } from "@mui/material";
 
 import HomePage from "./pages/HomePage";
@@ -10,7 +13,15 @@ import NotFoundPage from "./pages/NotFoundPage";
 
 import MyAppBar from "./components/MyAppBar";
 
+import { authOperations } from "./redux/auth";
+
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
+
   return (
     <>
       <MyAppBar />
