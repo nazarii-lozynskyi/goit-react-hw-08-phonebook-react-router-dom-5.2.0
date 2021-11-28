@@ -10,19 +10,17 @@ import { deepOrange } from "@mui/material/colors";
 
 function UserMenu() {
   const dispatch = useDispatch();
-  const name = useSelector(authSelectors.getUserName);
+  //const name = useSelector(authSelectors.getUserName);
 
-  const capitalLetters = name
-    .split(" ")
-    .map((n) => n[0])
-    .join("")
-    .toUpperCase();
+  //const capitalLetters = name
+  //  .split(" ")
+  //  .map((n) => n[0])
+  //  .join("")
+  //  .toUpperCase();
 
   return (
     <Box sx={{ display: "flex", alignItems: "center" }}>
-      <Avatar sx={{ bgcolor: deepOrange[500], marginRight: "5px" }}>
-        {capitalLetters}
-      </Avatar>
+      <Avatar sx={{ bgcolor: deepOrange[500], marginRight: "5px" }}>{}</Avatar>
       <p>
         Welcome,
         <span
@@ -34,7 +32,7 @@ function UserMenu() {
             marginLeft: "10px",
           }}
         >
-          {name}
+          {}
         </span>
       </p>
 
