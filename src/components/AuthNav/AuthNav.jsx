@@ -20,7 +20,7 @@ export default function AuthNav() {
   };
 
   return (
-    <List component="nav" aria-label="navigation" sx={{}}>
+    <List component="nav" aria-label="navigation">
       <Box sx={{ width: "fit-content" }}>
         <NavLink to="/login" variant="h6" style={{ textDecoration: "none" }}>
           <ListItemButton
